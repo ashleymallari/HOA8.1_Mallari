@@ -7,8 +7,8 @@
   tasks:
     - name: Collecting the PCAP file
       fetch:
-        src: /home/ashley/Documents/HOA8.1.pcap
-        dest: /home/ashley/Documents/PCAP_dest/
+        src: /home/ashley/Documents/PCAP/captured.pcap
+        dest: /home/ashley/Documents/HOA8.1/PCAP_dest/
         flat: yes
 
 - name: Extract executable from PCAP file
@@ -17,9 +17,9 @@
   gather_facts: false
   tasks:
     - name: Extracting the executable from PCAP file
-      command: "tcpflow -r /home/ashley/Documents/PCAP_dest/HOA8.1.pcap -o /home/ashley/Documents/PCAP_out/"
+      command: "tcpflow -r /home/ashley/Documents/HOA8.1/PCAP_dest/captured.pcap -o /home/ashley/Documents/HOA8.1/PCAP_out/"
       args:
-        creates: /home/ashley/Documents/PCAP_out/executable.exe
+        creates: /home/ashley/Documents/HOA8.1/PCAP_out/executable.exe
 
 - name: Debug .exe file creation
   hosts: localhost
@@ -27,7 +27,7 @@
   gather_facts: false
   tasks:
     - name: Debugging the .exe file that is created
-      command: "cat /home/ashley/Documents/PCAP_out/report.xml"
+      command: "cat /home/ashley/Documents/HOA8.1/PCAP_out/report.xml"
       register: cat_output
       changed_when: false
 
